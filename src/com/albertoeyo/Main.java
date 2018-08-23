@@ -5,7 +5,7 @@ import java.util.Arrays;
 import java.util.List;
 
 public class Main {
-    public static void main(String[] args){
+    public static void main(String[] args) {
         List<String> someBingoNumbers = Arrays.asList(
                 "N40", "N36",
                 "B12", "B6",
@@ -16,13 +16,11 @@ public class Main {
 
         final List<String> gNumbers = new ArrayList<>();
 
-        someBingoNumbers.forEach(bingoNumber -> {
-            if (bingoNumber.toUpperCase().startsWith("G")){
-                gNumbers.add(bingoNumber);
-            }
-        });
-
-        gNumbers.sort((s1, s2) -> s1.compareTo(s2));
-        gNumbers.forEach(System.out::println);
+        someBingoNumbers
+                .stream()
+                .map(String::toUpperCase)
+                .filter(s -> s.startsWith("G"))
+                .sorted()
+                .forEach(System.out::println);
     }
 }
